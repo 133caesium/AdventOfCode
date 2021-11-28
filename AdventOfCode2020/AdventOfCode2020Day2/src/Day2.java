@@ -11,7 +11,7 @@ public class Day2 {
 
         for (String password:passwordList) {
             northPolePassword passwordObject = new northPolePassword(password);
-            if (passwordObject.checkPasswordValid()){
+            if (passwordObject.checkPasswordValidTobogganRule()){
                 validPasswordCount++;
             }
         }

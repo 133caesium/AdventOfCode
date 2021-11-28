@@ -1,7 +1,7 @@
 public class northPolePassword {
     private char policyChar;
-    private int minimumOccurance;
-    private int maximumOccurance;
+    private int ruleIndexAlpha;
+    private int ruleIndexBeta;
     private String password;
     private boolean isValid;
 
@@ -13,13 +13,13 @@ public class northPolePassword {
         int dashIndex = rawPassword.indexOf("-");
         int colonIndex = rawPassword.indexOf(":");
         this.policyChar = rawPassword.charAt(colonIndex-1);
-        this.minimumOccurance = Integer.parseInt(rawPassword.substring(0,dashIndex));
-        this.maximumOccurance = Integer.parseInt(rawPassword.substring(dashIndex+1,colonIndex-2));
+        this.ruleIndexAlpha = Integer.parseInt(rawPassword.substring(0,dashIndex));
+        this.ruleIndexBeta = Integer.parseInt(rawPassword.substring(dashIndex+1,colonIndex-2));
         this.password = rawPassword.substring(colonIndex+2);
-        this.isValid = checkPasswordValid();
+        this.isValid = checkPasswordValidTobogganRule();
     }
 
-    public boolean checkPasswordValid(){
+    public boolean checkPasswordValidSledRule(){
         int characterCount = 0;
         boolean valid = false;
         for (int letterIndex = 0; letterIndex < this.password.length(); letterIndex++) {
@@ -27,7 +27,16 @@ public class northPolePassword {
                 characterCount++;
             }
         }
-        if (minimumOccurance<=characterCount && characterCount<=maximumOccurance){
+        if (ruleIndexAlpha <=characterCount && characterCount<= ruleIndexBeta){
+            valid = true;
+        }
+        return valid;
+    }
+
+    public boolean checkPasswordValidTobogganRule(){
+        int characterCount = 0;
+        boolean valid = false;
+        if (this.password.charAt(ruleIndexAlpha-1)==policyChar ^ this.password.charAt(ruleIndexBeta-1)==policyChar){
             valid = true;
         }
         return valid;
@@ -37,12 +46,12 @@ public class northPolePassword {
         return policyChar;
     }
 
-    public int getMinimumOccurance() {
-        return minimumOccurance;
+    public int getRuleIndexAlpha() {
+        return ruleIndexAlpha;
     }
 
     public int getMaximumOccurance() {
-        return maximumOccurance;
+        return ruleIndexBeta;
     }
 
     public String getPassword() {
