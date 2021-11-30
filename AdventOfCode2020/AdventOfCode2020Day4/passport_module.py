@@ -18,12 +18,16 @@ class Passport(object):
                 return False
         return True
 
-#
-#
-# class Passport_from_dict(Passport):
-#     __slots__ = ['byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid', 'cid']
-#     def __init__(self, **kwargs):
-#         super().__init__(**kwargs)
+    def is_valid_cid_optional(self):
+        properties = [self.__byr, self.__iyr, self.__eyr, self.__hgt, self.__hcl, self.__ecl, self.__pid]
+        for value in properties:
+            if value==None:
+                return False
+        return True
+
+class Passport_from_dict(Passport):
+     def __init__(self, **kwargs):
+         super().__init__(**kwargs)
 
 
 
