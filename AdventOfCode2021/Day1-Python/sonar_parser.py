@@ -10,14 +10,17 @@ class sonar_parser:
     def get_depths(self):
         return self.__depths
 
-    def get_depth_increases(self):
+    def get_depth_increases(self, window_size=1):
         number_of_depths = len(self.__depths)
-        depth_index = 1
+        depth_index = window_size
         depth_increase_count = 0
-        while depth_index<number_of_depths:
-            if self.__depths[depth_index]>self.__depths[depth_index-1]:
+        previous_window_sum = sum(self.__depths[:window_size])
+        while depth_index <= number_of_depths:
+            current_window_sum = sum(self.__depths[depth_index-window_size:depth_index])
+            if current_window_sum>previous_window_sum:
                 depth_increase_count += 1
             depth_index += 1
+            previous_window_sum = current_window_sum
         return depth_increase_count
 
     def make_passport(self):
