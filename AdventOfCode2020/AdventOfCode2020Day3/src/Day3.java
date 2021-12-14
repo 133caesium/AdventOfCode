@@ -9,9 +9,19 @@ public class Day3 {
         ArrayList<String> tobogganWorld = input.getListOfLines();
         input.closeFile();
 
-        Toboggan toboggan = new Toboggan(3,1,tobogganWorld);
+        ArrayList<Toboggan> toboggans = new ArrayList<Toboggan>();
 
-        System.out.println(toboggan.countTreesOnRide());
+        toboggans.add(new Toboggan(1,1,tobogganWorld));
+        toboggans.add(new Toboggan(3,1,tobogganWorld));
+        toboggans.add(new Toboggan(5,1,tobogganWorld));
+        toboggans.add(new Toboggan(7,1,tobogganWorld));
+        toboggans.add(new Toboggan(1,2,tobogganWorld));
+
+        long answer = 1;
+        for (Toboggan tobo:toboggans) {
+            answer = answer * tobo.countTreesOnRide();
+            System.out.println("There are "+String.valueOf(tobo.countTreesOnRide())+" trees in run "+String.valueOf(toboggans.indexOf(tobo))+" giving a mutiple of "+answer);
+        }
 
     }
 

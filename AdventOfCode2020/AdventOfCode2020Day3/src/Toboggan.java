@@ -20,24 +20,21 @@ public class Toboggan {
     }
 
     public int countTreesOnRide() {
-        steps = 0;
         trees = 0;
         fields = 0;
         int position = startingIndex;
-        for (String line:tobogganWorld) {
-            steps++;
-            if (line.charAt(position)==treeSquare){
+        for (int steps = 0; steps < tobogganWorld.size(); steps+=down) {
+            if (tobogganWorld.get(steps).charAt(position)==treeSquare){
                 trees++;
             } else {
                 fields ++;
             }
-            position = (position+right) % line.length();
+            position = (position+right) % tobogganWorld.get(steps).length();
         }
         return trees;
     }
 
     private int setStartingIndex(String startingLine){
-        boolean indexFound = false;
         return startingLine.indexOf('.');
     }
 

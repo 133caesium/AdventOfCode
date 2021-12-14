@@ -11,7 +11,7 @@ class passport_parser:
             else:
                 passport_properties = line.split()
                 for passport_property in passport_properties:
-                    self.__passport_data[passport_property[0:3]] = passport_property[3:]
+                    self.__passport_data[passport_property[0:3]] = passport_property[4:]
         self.make_passport()
 
     def get_passports(self):
