@@ -1,6 +1,7 @@
 import unittest
 import bingoparser
 import bingo_board
+import bingo_logic
 
 class MyTestCase(unittest.TestCase):
 
@@ -52,9 +53,21 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(board.check_row_for_bingo(1), False)
         self.assertEqual(board.check_all_for_bingo(), True)
 
-    def test_bingo_logic(self):
+    def test_multiple_board_creation(self):
         parser = bingoparser.BingoParser(True)
         self.assertEqual(3 , len(parser.get_boards()))
+
+    def test_bingo_occurs(self):
+        parser = bingoparser.BingoParser(True)
+        draws = parser.get_draw_numbers()
+        boards = parser.get_boards()
+        self.assertEqual(11, bingo_logic.play_bingo(draws,boards))
+
+    def test_calculate_answer_from_board(self):
+        parser = bingoparser.BingoParser(True)
+        answer = bingo_logic.calculate_answer(parser)
+        self.assertEqual(4512, answer)
+
 
 
 if __name__ == '__main__':

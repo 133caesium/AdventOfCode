@@ -49,4 +49,13 @@ class BingoBoard:
     def get_called(self, index):
         return self.__called[index]
 
+    def get_sum_unmarked(self):
+        sum_of_unmarked = 0
+        index = 0
+        while index < len(self.__board):
+            if not self.__called[index]:
+                sum_of_unmarked = sum_of_unmarked + self.__board[index]
+            index = index + 1
+        return sum_of_unmarked
+
 
