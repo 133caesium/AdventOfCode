@@ -52,8 +52,9 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(board.check_row_for_bingo(1), False)
         self.assertEqual(board.check_all_for_bingo(), True)
 
-
-
+    def test_bingo_logic(self):
+        parser = bingoparser.BingoParser(True)
+        self.assertEqual(3 , len(parser.get_boards()))
 
 
 if __name__ == '__main__':
