@@ -20,7 +20,7 @@ class BingoBoard:
         return row_is_complete
 
     def check_column_for_bingo(self, colIndex):
-        inital_index = colIndex * 5
+        inital_index = colIndex
         current_index = inital_index
         col_is_complete = True
         while current_index < len(self.__called):
@@ -29,9 +29,24 @@ class BingoBoard:
             current_index = current_index + 5
         return col_is_complete
 
+    def check_all_for_bingo(self):
+        row_col_index = 0
+        bingo = False
+        while row_col_index < 5:
+            if self.check_column_for_bingo(row_col_index) or self.check_row_for_bingo(row_col_index):
+                bingo = True
+            row_col_index = row_col_index + 1
+        return bingo
+
     def add_called_number(self, calledNumber):
         if calledNumber in self.__board:
             number_index = self.__board.index(calledNumber)
             self.__called[number_index] = True
+
+    def get_number(self, index):
+        return self.__board[index]
+
+    def get_called(self, index):
+        return self.__called[index]
 
 

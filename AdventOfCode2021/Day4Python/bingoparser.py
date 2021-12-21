@@ -18,8 +18,17 @@ class BingoParser:
         return input_lines
 
     def draw_numbers_from_input(self, input_data):
-        draw_numbers = input_data[0].split(",")
-        return draw_numbers
+        draw_numbers = input_data[0].strip().split(",")
+        draw_numbers_as_int = [int(numeric_string) for numeric_string in draw_numbers]
+        return draw_numbers_as_int
 
     def boards_from_input(self, input_data):
         return []
+
+def board_list_from_strings(board_list):
+    test_board_list = []
+    for row in board_list:
+        row_list = row.split()
+        for number in row_list:
+            test_board_list.append(int(number))
+    return test_board_list
