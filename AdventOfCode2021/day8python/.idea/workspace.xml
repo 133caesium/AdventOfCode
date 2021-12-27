@@ -2,15 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c14f21ca-d717-41e8-9c8f-2d9fd4f57309" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../day7Python/.idea/day7Python.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day7Python/input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../day7Python/test_input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/day8python.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/day8.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/day8_tests.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Day4Python/bingo_logic.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Day4Python/bingo_logic.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Day4Python/day4_tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Day4Python/day4_tests.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Day4Python/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Day4Python/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day7Python/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../day7Python/input.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day7Python/test_input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../day7Python/test_input.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day8.py" beforeDir="false" afterPath="$PROJECT_DIR$/day8.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test_input.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +22,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="Python Unit Test" />
       </list>
     </option>
   </component>
@@ -38,7 +40,28 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.day8">
+    <configuration name="day8" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="day8python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/day8.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="day8python" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -60,6 +83,71 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Unittests for day8.MyTestCase" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="day8python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;day8.MyTestCase&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests for day8.MyTestCase.test_dictionary" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="day8python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;day8.MyTestCase.test_dictionary&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests for day8_tests.MyTestCase" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="day8python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;day8_tests.MyTestCase&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests in day8.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="day8python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/day8.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.day8" />
+        <item itemvalue="Python tests.Unittests for day8_tests.MyTestCase" />
+        <item itemvalue="Python tests.Unittests in day8.py" />
+        <item itemvalue="Python tests.Unittests for day8.MyTestCase.test_dictionary" />
+        <item itemvalue="Python tests.Unittests for day8.MyTestCase" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -82,6 +170,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
