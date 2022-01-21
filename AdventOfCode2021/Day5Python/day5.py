@@ -149,6 +149,7 @@ if __name__ == '__main__':
     parser = LineParser()
     hydrothermal_map = HydrothermalMap(parser)
     hydrothermal_map.plot_all_lines()
+    print(hydrothermal_map.get_map())
     count = 0
     for row in hydrothermal_map.get_map():
         for point in row:

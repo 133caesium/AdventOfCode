@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c14f21ca-d717-41e8-9c8f-2d9fd4f57309" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/day8_tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day9python/.idea/day9python.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day9python/day9.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day9python/input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../day9python/test_input.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Day4Python/bingo_logic.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Day4Python/bingo_logic.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Day4Python/day4_tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Day4Python/day4_tests.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Day4Python/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Day4Python/main.py" afterDir="false" />
@@ -10,8 +13,6 @@
       <change beforePath="$PROJECT_DIR$/../day7Python/test_input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../day7Python/test_input.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/day8.py" beforeDir="false" afterPath="$PROJECT_DIR$/day8.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test_input.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +39,8 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Day5Python" />
   </component>
   <component name="RunManager" selected="Python.day8">
     <configuration name="day8" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">

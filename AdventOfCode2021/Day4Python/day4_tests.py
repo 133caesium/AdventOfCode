@@ -65,8 +65,21 @@ class MyTestCase(unittest.TestCase):
 
     def test_calculate_answer_from_board(self):
         parser = bingoparser.BingoParser(True)
-        answer = bingo_logic.calculate_answer(parser)
+        answer = bingo_logic.calculate_answer_first_board_to_win(parser)
         self.assertEqual(4512, answer)
+
+    def test_last_board(self):
+        parser = bingoparser.BingoParser(True)
+        answer = bingo_logic.find_last_board_to_bingo(parser)
+        self.assertEqual(2, answer)
+
+    def test_last_board_answer(self):
+        parser = bingoparser.BingoParser(True)
+        last_board = bingo_logic.find_last_board_to_bingo(parser)
+        answer = bingo_logic.calculate_answer_to_last_board(parser,last_board)
+        self.assertEqual(1924, answer)
+
+
 
 
 
