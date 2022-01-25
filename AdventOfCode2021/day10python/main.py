@@ -1,3 +1,6 @@
+import statistics
+
+
 class LineParser:
 
     def __init__(self, testing_flag=False):
@@ -101,12 +104,13 @@ class NaviLine:
 if __name__ == '__main__':
     syntax_scoring_data = LineParser().get_initial_state()
     syntax_error_score = 0
+    incomplete_lines = []
 
     for line in syntax_scoring_data:
-        print(line.get_original_string())
-        print(line.get_simplified_string())
+        # print(line.get_original_string())
+        # print(line.get_simplified_string())
         illegal_character = line.get_first_illegal()
-        print(line.get_first_illegal())
+        # print(line.get_first_illegal())
         if illegal_character == ')':
             syntax_error_score += 3
         elif illegal_character == ']':
@@ -116,12 +120,35 @@ if __name__ == '__main__':
         elif illegal_character == '>':
             syntax_error_score += 25137
         if illegal_character:
-            print(syntax_error_score)
+            pass
+        else:
+            incomplete_lines.append(line)
+    print(syntax_error_score)
 
+    autocomplete_score = []
 
-    # test_string = NaviLine('[<>({}){}[([])<>]]')
-    # test_string.simplify_loop()
+    for line in incomplete_lines:
+        print(line.get_simplified_string())
+        score = 0
+        for bracket in (line.get_simplified_string()[::-1]):
+            score *= 5
+            if bracket == '(':
+                score += 1
+            elif bracket == '[':
+                score += 2
+            elif bracket == '{':
+                score += 3
+            elif bracket == '<':
+                score += 4
+        print(score)
+        autocomplete_score.append(score)
+
     print(len(syntax_scoring_data))
+    print(len(incomplete_lines))
+
+    print("The median autocomplete score is {}".format(statistics.median(autocomplete_score)))
+
+
 
 
 
