@@ -46,7 +46,33 @@ class SmokeMap:
         return self.__basin_map
 
     def map_basin(self):
+        #if the cell has value 9, it is not in a basin
+        #if the cell has an adjacent value that is in a basin, take that value
+        #otherwise, increment the basin counter and that cell is in a basin.
+
+        changed_something = False
+        basin_count = 1
+        scan_x = 0
+        while scan_x <= self.__x_max:
+            scan_y = 0
+            while scan_y <= self.__y_max:
+                if self.__smoke_map[scan_y, scan_x] == 9:
+                    self.__basin_map[scan_y, scan_x] = -1
+                if self.__smoke_map[scan_y, scan_x] != 9:
+                    if self.__basin_map[scan_y-1, scan_x] > 0:
+                        self.__basin_map[scan_y, scan_x] = self.__basin_map[scan_y-1, scan_x]
+                    elif self.__basin_map[scan_y, scan_x-1] > 0:
+                        self.__basin_map[scan_y, scan_x] = self.__basin_map[scan_y, scan_x-1]
+                    else:
+                        self.__basin_map[scan_y, scan_x] = basin_count
+                        basin_count += 1
+                scan_y += 1
+            scan_x += 1
+
+    def check_cells_basin(self):
         pass
+        #check cell values
+
 
     def map_lowpoints(self):
         self.map_corners()
