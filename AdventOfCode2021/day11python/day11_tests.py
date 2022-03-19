@@ -89,6 +89,17 @@ class Test_Day_11_Code(unittest.TestCase):
         return octopus_array
         self.assertEqual(1656, octopus_array.get_total_flashes())
 
+    def test_steps_until_simultaneous_flash(self):
+        initial_parser = main.LineParser(True)
+        octopus_array = main.OctopusArray(initial_parser)
+        step = 0
+        latest_flash_count = 0
+        while latest_flash_count < 100:
+            latest_flash_count = octopus_array.run_single_step()
+            step += 1
+        self.assertEqual(195, step)
+
+
 
 if __name__ == '__main__':
     unittest.main()

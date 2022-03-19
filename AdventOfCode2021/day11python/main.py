@@ -72,8 +72,9 @@ class OctopusArray:
 
     def run_single_step(self):
         self.increment_step()
-        self.flash_step()
+        flash_count = self.flash_step()
         self.finish_step()
+        return flash_count
 
     def increment_step(self):
         for row in self.__octopus_array:
@@ -82,6 +83,7 @@ class OctopusArray:
 
     def flash_step(self):
         flashing = True
+        flash_count = 0
         while flashing:
             flashing = False
             for row in self.__octopus_array:
@@ -89,6 +91,8 @@ class OctopusArray:
                     if octopus.flash():
                         self.flash_neighbours(octopus.get_y_coordinate(), octopus.get_x_coordinate())
                         flashing = True
+                        flash_count += 1
+        return flash_count
 
 
     def finish_step(self):
@@ -130,11 +134,23 @@ class OctopusArray:
             y_coordinate += 1
         return octopus_array
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
+def print_flashes_after_100_steps():
     initial_parser = LineParser()
     octopus_array = OctopusArray(initial_parser)
     for step in range(100):
         octopus_array.run_single_step()
 
     print(octopus_array.get_total_flashes())
+
+def count_steps_until_simultaneous_flash():
+    initial_parser = LineParser()
+    octopus_array = OctopusArray(initial_parser)
+    step = 0
+    latest_flash_count = 0
+    while latest_flash_count < 100:
+        latest_flash_count = octopus_array.run_single_step()
+        step += 1
+    print(step)
+
+if __name__ == '__main__':
+    count_steps_until_simultaneous_flash()
