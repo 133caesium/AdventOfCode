@@ -87,8 +87,7 @@ class OctopusArray:
             for row in self.__octopus_array:
                 for octopus in row:
                     if octopus.flash():
-                        # print("flash detected")
-                        self.flash_neighbours(octopus.get_x_coordinate(), octopus.get_y_coordinate())
+                        self.flash_neighbours(octopus.get_y_coordinate(), octopus.get_x_coordinate())
                         flashing = True
 
 
@@ -103,7 +102,14 @@ class OctopusArray:
                 for column in range(flash_column-1, flash_column+2):
                     if column in range(10):
                         self.get_octopus_from_array(column, row).increment_energy()
-                        # print("adding 1 energy to octopus at x={}, y={}".format(column,row))
+
+    def get_total_flashes(self):
+        total_flashes = 0
+        for row in self.__octopus_array:
+            for octopus in row:
+                total_flashes += octopus.get_flash_count()
+        return total_flashes
+
 
     def get_octopus_array(self):
         return self.__octopus_array
@@ -126,4 +132,9 @@ class OctopusArray:
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print("nothing to see here")
+    initial_parser = LineParser()
+    octopus_array = OctopusArray(initial_parser)
+    for step in range(100):
+        octopus_array.run_single_step()
+
+    print(octopus_array.get_total_flashes())
