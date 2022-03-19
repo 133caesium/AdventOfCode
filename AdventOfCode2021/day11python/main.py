@@ -38,6 +38,41 @@ class BioluminescentOctopus:
     def flash(self):
         pass
 
+    def get_energy_level(self):
+        return self.__energy_level
+
+    def get_x_coordinate(self):
+        return self.__x_coordinate
+
+    def get_y_coordinate(self):
+        return self.__y_coordinate
+
+class OctopusArray:
+
+    def __init__(self, parser: LineParser):
+        self.__octopus_array = self.generate_octopus_array(parser.get_initial_state())
+
+    def get_octopus_array(self):
+        return self.__octopus_array
+
+    def get_octopus_from_array(self, x_coordinate: int, y_coordinate: int):
+        return self.__octopus_array[y_coordinate][x_coordinate]
+
+
+    def generate_octopus_array(self, raw_values):
+        octopus_array = []
+        y_coordinate = 0
+        for row in raw_values:
+            octopus_row = []
+            x_coordinate = 0
+            for octopus_inital_state in row:
+                octopus_row.append(BioluminescentOctopus(x_coordinate,y_coordinate,octopus_inital_state))
+                x_coordinate += 1
+            octopus_array.append(octopus_row)
+            y_coordinate += 1
+        return octopus_array
+
+
 
 
 
