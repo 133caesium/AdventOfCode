@@ -2,10 +2,11 @@
 
 class LineParser:
 
-    def __init__(self, testing_flag=False):
+    def __init__(self, testing_flag=False, offset=0, separation=12, array_size=10):
         input_data = self.load_input(testing_flag)
         self.initial_state = []
-        for input_line in input_data:
+        for input_line_index in range(offset*separation, offset*separation+array_size):
+            input_line = input_data[input_line_index]
             output_line = []
             for number in input_line.strip():
                 output_line.append(int(number))
@@ -34,9 +35,24 @@ class BioluminescentOctopus:
 
     def increment_step(self):
         self.__steps_counted += 1
+        self.increment_energy()
+
 
     def flash(self):
-        pass
+        flash_happened = False
+        if self.__energy_level > 9 and not self.__flashed_this_step:
+            self.__flash_counts += 1
+            self.__flashed_this_step = True
+            flash_happened = True
+        return flash_happened
+
+    def flash_reset(self):
+        if self.__flashed_this_step:
+            self.__energy_level = 0
+            self.__flashed_this_step = False
+
+    def increment_energy(self):
+        self.__energy_level += 1
 
     def get_energy_level(self):
         return self.__energy_level
@@ -52,12 +68,44 @@ class OctopusArray:
     def __init__(self, parser: LineParser):
         self.__octopus_array = self.generate_octopus_array(parser.get_initial_state())
 
+    def run_single_step(self):
+        self.increment_step()
+        self.flash_step()
+        self.finish_step()
+
+    def increment_step(self):
+        for row in self.__octopus_array:
+            for octopus in row:
+                octopus.increment_step()
+
+    def flash_step(self):
+        flashing = True
+        while flashing:
+            flashing = False
+            for row in self.__octopus_array:
+                for octopus in row:
+                    if octopus.flash():
+                        self.flash_neighbours(octopus.get_x_coordinate(), octopus.get_y_coordinate())
+                        flashing = True
+
+
+    def finish_step(self):
+        for row in self.__octopus_array:
+            for octopus in row:
+                octopus.flash_reset()
+
+    def flash_neighbours(self, row, column):
+        for row in range(row-1, row+2):
+            if row in range(10):
+                for column in range(column-1, column+2):
+                    if column in range(10):
+                        self.get_octopus_from_array(column,row).increment_energy()
+
     def get_octopus_array(self):
         return self.__octopus_array
 
     def get_octopus_from_array(self, x_coordinate: int, y_coordinate: int):
         return self.__octopus_array[y_coordinate][x_coordinate]
-
 
     def generate_octopus_array(self, raw_values):
         octopus_array = []
@@ -71,10 +119,6 @@ class OctopusArray:
             octopus_array.append(octopus_row)
             y_coordinate += 1
         return octopus_array
-
-
-
-
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
