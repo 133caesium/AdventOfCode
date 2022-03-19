@@ -63,8 +63,10 @@ class BioluminescentOctopus:
     def get_y_coordinate(self):
         return self.__y_coordinate
 
-class OctopusArray:
+    def get_flash_count(self):
+        return self.__flash_counts
 
+class OctopusArray:
     def __init__(self, parser: LineParser):
         self.__octopus_array = self.generate_octopus_array(parser.get_initial_state())
 
@@ -85,6 +87,7 @@ class OctopusArray:
             for row in self.__octopus_array:
                 for octopus in row:
                     if octopus.flash():
+                        # print("flash detected")
                         self.flash_neighbours(octopus.get_x_coordinate(), octopus.get_y_coordinate())
                         flashing = True
 
@@ -94,12 +97,13 @@ class OctopusArray:
             for octopus in row:
                 octopus.flash_reset()
 
-    def flash_neighbours(self, row, column):
-        for row in range(row-1, row+2):
+    def flash_neighbours(self, flash_row, flash_column):
+        for row in range(flash_row-1, flash_row+2):
             if row in range(10):
-                for column in range(column-1, column+2):
+                for column in range(flash_column-1, flash_column+2):
                     if column in range(10):
-                        self.get_octopus_from_array(column,row).increment_energy()
+                        self.get_octopus_from_array(column, row).increment_energy()
+                        # print("adding 1 energy to octopus at x={}, y={}".format(column,row))
 
     def get_octopus_array(self):
         return self.__octopus_array

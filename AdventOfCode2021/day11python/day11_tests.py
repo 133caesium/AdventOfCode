@@ -8,6 +8,32 @@ def test_octopus_array_after_n_step(self, number_of_steps):
     for step in range(number_of_steps):
         octopus_array.run_single_step()
     step_one_parser = main.LineParser(True, number_of_steps)
+
+    print("Test solution")
+    for row in range(10):
+        print(step_one_parser.get_initial_state()[row])
+
+    print("Test Attempt")
+    for row in range(10):
+        line = []
+        for column in range(10):
+            line.append(octopus_array.get_octopus_from_array(column, row).get_energy_level())
+        print(line)
+
+    print("Flashes")
+    for row in range(10):
+        line = []
+        for column in range(10):
+            line.append(octopus_array.get_octopus_from_array(column, row).get_flash_count())
+        print(line)
+
+    print("Coords")
+    for row in range(10):
+        line = []
+        for column in range(10):
+            line.append((octopus_array.get_octopus_from_array(column, row).get_y_coordinate(), octopus_array.get_octopus_from_array(column, row).get_x_coordinate()))
+        print(line)
+
     for row in range(10):
         for column in range(10):
             octopus_x_coordinate = octopus_array.get_octopus_from_array(column, row).get_x_coordinate()
