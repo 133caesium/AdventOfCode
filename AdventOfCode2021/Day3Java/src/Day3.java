@@ -5,9 +5,7 @@ public class Day3 {
 
 
     public static void main(String[] args) {
-        Day3 app = new Day3();
-        app.run();
-
+        new Day3().run();
     }
 
     public void run() {
