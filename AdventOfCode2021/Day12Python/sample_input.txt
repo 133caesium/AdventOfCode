@@ -1,4 +1,4 @@
-10 path example:
+10 path example, or 36 with the visit a small cave 2x rule.:
 start-A
 start-b
 A-c
@@ -7,7 +7,7 @@ b-d
 A-end
 b-end
 
-19 path example:
+19 path example, or 103 with the visit a small cave 2x rule.:
 dc-end
 HN-start
 start-kj
@@ -19,7 +19,7 @@ kj-sa
 kj-HN
 kj-dc
 
-226 path example:
+226 path example, or 3509 with the visit a small cave 2x rule.:
 fs-end
 he-DX
 fs-he

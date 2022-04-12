@@ -1,6 +1,7 @@
 import re
 import copy
 
+
 class LineParser:
 
     def __init__(self, testing_flag=False, offset=0, separation=12, array_size=10):
@@ -68,21 +69,27 @@ class Cave:
 class Path:
     path_id = 0
 
-    def __init__(self, cave_network_set, path_list=['start']):
+    def __init__(self, cave_network_set, path_list=['start'], visited_small_twice=False):
         self.__id = Path.path_id
         Path.path_id += 1
         self.__cave_network_set = copy.deepcopy(cave_network_set)
         self.__path_list = copy.deepcopy(path_list)
+        self.__visited_a_small_cave_twice = visited_small_twice
         if len(path_list) == 1:
             self.__cave_network_set['start'].add_visit
 
     def add_cave_to_path(self, cave_id):
         if cave_id in self.__cave_network_set[self.__path_list[-1]].get_connected_caves():
             self.__cave_network_set[cave_id].add_visit()
+            if (self.__cave_network_set[cave_id].get_visits() == 2 and not self.__cave_network_set[cave_id].is_big()):
+                self.__visited_a_small_cave_twice = True
             self.__path_list.append(cave_id)
 
     def get_id(self):
         return self.__id
+
+    def get_visted_small_twice(self):
+        return self.__visited_a_small_cave_twice
 
     def is_complete(self):
         return self.__path_list[-1] == 'end'
@@ -97,8 +104,9 @@ class Path:
         next_caves = []
         possible_caves = self.__cave_network_set[self.__path_list[-1]].get_connected_caves()
         for cave in possible_caves:
-            if self.__cave_network_set[cave].is_big() or self.__cave_network_set[cave].get_visits() == 0:
-                if cave != 'start':
+            if cave != 'start':
+                if self.__cave_network_set[cave].is_big() or self.__cave_network_set[cave].get_visits() == 0 or \
+                        (self.__cave_network_set[cave].get_visits() == 1 and not self.__visited_a_small_cave_twice):
                     next_caves.append(cave)
         return next_caves
 
@@ -137,8 +145,10 @@ def initalise_caves(verbose=False):
     if verbose:
         print('--------------------------------------------------------------------')
         print('Set-up Caves')
-    bulk_cave_text = LineParser(True)
-    individual_cave_text = bulk_cave_text.initial_state[2][1:]
+    bulk_cave_text = LineParser(False)
+    # The follow line reads the sub-list of caves. e.g. For the main input (having no header) it should be [0] or [0][0:]
+    # For the 3 test cases it should be [0][1:] [1][1:] or [2][1:] to ignore the first line (which contains the solution)
+    individual_cave_text = bulk_cave_text.initial_state[0][0:]
     caves = get_cave_set(individual_cave_text)
     if verbose:
         print(caves)
@@ -150,17 +160,17 @@ def initalise_caves(verbose=False):
         print('')
     return caves
 
+
 def grow_paths(paths):
     next_paths = set()
     for path in paths:
         if not path.is_complete():
-            if len(path.get_next_caves())>0:
+            if len(path.get_next_caves()) > 0:
                 for cave in path.get_next_caves():
-                    new_path = Path(path.get_cave_network(), path.get_path_list())
+                    new_path = Path(path.get_cave_network(), path.get_path_list(), path.get_visted_small_twice())
                     new_path.add_cave_to_path(cave)
                     next_paths.add(new_path)
     return next_paths
-
 
 
 if __name__ == '__main__':
@@ -172,7 +182,7 @@ if __name__ == '__main__':
 
     all_paths = set()
 
-    while len(current_paths)!=0:
+    while len(current_paths) != 0:
         print('adding paths:')
         print(current_paths)
         for path in current_paths:
@@ -187,3 +197,4 @@ if __name__ == '__main__':
             valid_paths.add(path)
     print(f'Final list of valid paths (contains {len(valid_paths)} paths)')
     print(valid_paths)
+    print(f'Final list of valid paths (contains {len(valid_paths)} paths)')
