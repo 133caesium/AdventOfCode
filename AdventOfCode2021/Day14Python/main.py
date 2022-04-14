@@ -19,7 +19,7 @@ class LineParser:
         return self.initial_state
 
     def load_input(self, testing_flag):
-        input_path = "./input2.txt"
+        input_path = "./input.txt"
         if testing_flag:
             input_path = "./sample_input.txt"
         with open(input_path) as file:
@@ -134,24 +134,20 @@ def apply_rules(template, rules):
 # The inisight of a "smarter" implelementation, is that for each pair, the output is entirely predicatble. e.g.
 
 if __name__ == '__main__':
-    # template = initalise_template(True, True)
-    # rules = initalise_rules(True, True)
+    # template = initalise_template(True, False)
+    # rules = initalise_rules(True, False)
     template = initalise_template()
     rules = initalise_rules()
     print(f'Template: {"".join(template)}')
     for step in range(10):
         template = apply_rules(template, rules)
-        print(f'After step {step+1}: Template is {len(template)} blocks; {"".join(template)}')
-        print(f'step {step+1} complete the template is now {len(template)} blocks long.')
+        # print(f'After step {step+1}: Template is {len(template)} blocks; {"".join(template)}')
+        # print(f'step {step+1} complete the template is now {len(template)} blocks long.')
 
-        print(f'{datetime.now()}')
+        # print(f'{datetime.now()}')
     unqique_counts = []
     for unique_block in set(template):
         value = sum([True for block in template if block == unique_block])
         unqique_counts.append(value)
         print(f'Block "{unique_block}" occurs {sum([ True for block in template if block == unique_block])} times')
     print(f'The difference between the most and least common blocks is {max(unqique_counts)-min(unqique_counts)}')
-    # # do_fold(points, folds[0])
-    # for fold in folds:
-    #     do_fold(points, fold)
-    # advent_of_code_print_out(points)
