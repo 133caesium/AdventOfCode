@@ -54,6 +54,11 @@ class LineParser:
 #         return f'Rule inserting ({self.__insert} between block {self.__target})'
 
 
+def add_block_to_template(template, block, times = 1):
+    if block in template:
+        template[block] += times
+    else:
+        template[block] = times
 
 
 def initalise_template(test=False, verbose=False):
@@ -63,15 +68,16 @@ def initalise_template(test=False, verbose=False):
         print('The raw input is: ')
         print(template_text)
         print('Then initalise template:')
-    polymer_blocks = []
-    for block in template_text:
-        polymer_blocks.append(block)
+    template = {}
+    for block_index in range(len(template_text)-1):
+        block = template_text[block_index:block_index+2]
+        add_block_to_template(template, block)
     if verbose:
-        print(polymer_blocks)
+        print(template)
         print('--------------------------------------------------------------------')
         print('')
         print('')
-    return polymer_blocks
+    return template
 
 def initalise_rules(test=False, verbose=False):
     point_text = LineParser(test)
@@ -79,42 +85,17 @@ def initalise_rules(test=False, verbose=False):
         print('--------------------------------------------------------------------')
         print('The raw input is: ')
         print(point_text.initial_state)
-        print('First initalise points:')
+        print('Initalise rules:')
     rule_objects = {}
     for raw_rule in point_text.initial_state[1]:
         target, insert = raw_rule.split(" -> ")
-        rule_objects[target] = insert
+        rule_objects[target] = (target[0]+insert, insert+target[1])
     if verbose:
         print(rule_objects)
         print('--------------------------------------------------------------------')
         print('')
         print('')
     return rule_objects
-
-# def advent_of_code_print_out(points):
-#     max_x = 0
-#     max_y = 0
-#     for point in points:
-#         if point.get_x() > max_x:
-#             max_x = point.get_x()
-#         if point.get_y() > max_y:
-#             max_y = point.get_y()
-#     sheet = np.zeros((max_y + 1, max_x + 1))
-#
-#     for point in points:
-#         sheet[point.get_y(), point.get_x()] = True
-#
-#     print('--------------------------------------------------------------------')
-#     for row in sheet:
-#         row_string = ""
-#         for cell in row:
-#             if cell>0:
-#                 row_string += '#'
-#             else:
-#                 row_string += '.'
-#         print(row_string)
-#     print(f'The total number of points is {sheet.sum()}')
-#     print('--------------------------------------------------------------------')
 
 def apply_rules(template, rules):
     inserts = []
@@ -134,23 +115,23 @@ def apply_rules(template, rules):
 # The inisight of a "smarter" implelementation, is that for each pair, the output is entirely predicatble. e.g.
 
 if __name__ == '__main__':
-    # template = initalise_template(True, True)
-    # rules = initalise_rules(True, True)
-    template = initalise_template()
-    rules = initalise_rules()
-    print(f'Template: {"".join(template)}')
-    for step in range(10):
-        template = apply_rules(template, rules)
-        print(f'After step {step+1}: Template is {len(template)} blocks; {"".join(template)}')
-        print(f'step {step+1} complete the template is now {len(template)} blocks long.')
-
-        print(f'{datetime.now()}')
-    unqique_counts = []
-    for unique_block in set(template):
-        value = sum([True for block in template if block == unique_block])
-        unqique_counts.append(value)
-        print(f'Block "{unique_block}" occurs {sum([ True for block in template if block == unique_block])} times')
-    print(f'The difference between the most and least common blocks is {max(unqique_counts)-min(unqique_counts)}')
+    template = initalise_template(True, True)
+    rules = initalise_rules(True, True)
+    # template = initalise_template()
+    # rules = initalise_rules()
+    # print(f'Template: {"".join(template)}')
+    # for step in range(10):
+    #     template = apply_rules(template, rules)
+    #     print(f'After step {step+1}: Template is {len(template)} blocks; {"".join(template)}')
+    #     print(f'step {step+1} complete the template is now {len(template)} blocks long.')
+    #
+    #     print(f'{datetime.now()}')
+    # unqique_counts = []
+    # for unique_block in set(template):
+    #     value = sum([True for block in template if block == unique_block])
+    #     unqique_counts.append(value)
+    #     print(f'Block "{unique_block}" occurs {sum([ True for block in template if block == unique_block])} times')
+    # print(f'The difference between the most and least common blocks is {max(unqique_counts)-min(unqique_counts)}')
     # # do_fold(points, folds[0])
     # for fold in folds:
     #     do_fold(points, fold)
