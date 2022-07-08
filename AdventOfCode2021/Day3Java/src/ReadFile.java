@@ -1,16 +1,21 @@
 import java.io.File;  // Import the File class
 import java.io.FileNotFoundException;  // Import this class to handle errors
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner; // Import the Scanner class to read text files
 
 public class ReadFile {
-    Scanner myReader;
+
+
+    private Scanner myReader;
+    private ArrayList<String> file_contents;
 
     public ReadFile(){
+        loadFile();
+        this.file_contents = getListOfLines();
+        closeFile();
     }
 
-    public void loadFile(){
+    private void loadFile(){
         try {
             File myObj = new File("./resources/input.txt");
             myReader = new Scanner(myObj);
@@ -32,7 +37,7 @@ public class ReadFile {
         return nextLine;
     }
 
-    public ArrayList<String> getListOfLines(){
+    private ArrayList<String> getListOfLines(){
         ArrayList<String> lineList = new ArrayList<String>();
         while (myReader.hasNextLine()) {
             String data = myReader.nextLine();
@@ -41,7 +46,12 @@ public class ReadFile {
         return lineList;
     }
 
-    public void closeFile(){
+    private void closeFile(){
         myReader.close();
     }
+
+    public ArrayList<String> getFile_contents() {
+        return file_contents;
+    }
+
 }

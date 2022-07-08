@@ -3,16 +3,9 @@ import java.util.ArrayList;
 public class Day3 {
     private ArrayList<String> inputStrings;
 
-
-    public static void main(String[] args) {
-        new Day3().run();
-    }
-
     public void run() {
         ReadFile day3input = new ReadFile();
-        day3input.loadFile();
-        this.inputStrings = day3input.getListOfLines();
-        day3input.closeFile();
+        this.inputStrings = day3input.getFile_contents();
         String gamma = buildGamma();
         String epsilon = buildEpsilon();
         String oxygen = buildOxygenRating();
@@ -110,6 +103,10 @@ public class Day3 {
 
     public int binaryStringToInt(String binaryNumberAsString) {
         return Integer.parseInt(binaryNumberAsString, 2);
+    }
+
+    public static void main(String[] args) {
+        new Day3().run();
     }
 
 }
