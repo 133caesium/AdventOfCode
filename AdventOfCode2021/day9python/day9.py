@@ -1,5 +1,11 @@
 import numpy as np
+from greyscaleplot import plot_numpy_matrix, plot_n_numpy_matricies
 
+# Note to self, this might be one solution:
+# https://en.wikipedia.org/wiki/Flood_fill
+
+# Also this is the problem file:
+# https://adventofcode.com/2021/day/        9
 
 class LineParser:
 
@@ -130,13 +136,23 @@ class SmokeMap:
         return self.__smoke_map[y, x] < self.__smoke_map[y +1, x]
 
 
-if __name__ == '__main__':
-    parser = LineParser(True)
-    smoke_map = SmokeMap(parser)
+def archived_function_calls():
     print(smoke_map.get_smoke_map())
+    plot_numpy_matrix(smoke_map.get_smoke_map())
     print(smoke_map.get_lowpoint_map())
+    plot_numpy_matrix(smoke_map.get_lowpoint_map())
     print(smoke_map.get_lowpoint_map().sum())
     print(smoke_map.get_basin_map())
+    plot_numpy_matrix(smoke_map.get_basin_map())
+
+
+if __name__ == '__main__':
+    parser = LineParser(False)
+    smoke_map = SmokeMap(parser)
+    smoke_map_matrix = smoke_map.get_smoke_map()
+    lowpoint_matrix = smoke_map.get_lowpoint_map()
+    basin_matrix = smoke_map.get_basin_map()
+    plot_n_numpy_matricies(smoke_map_matrix, lowpoint_matrix, basin_matrix)
 
 
 
