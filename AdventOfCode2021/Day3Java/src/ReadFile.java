@@ -10,14 +10,24 @@ public class ReadFile {
     private ArrayList<String> file_contents;
 
     public ReadFile(){
-        loadFile();
+        loadFile(false);
         this.file_contents = getListOfLines();
         closeFile();
     }
 
-    private void loadFile(){
+    public ReadFile(boolean test){
+        loadFile(test);
+        this.file_contents = getListOfLines();
+        closeFile();
+    }
+
+    private void loadFile(boolean test){
+        String pathname = "./resources/input.txt";
+        if (test) {
+            pathname = "./resources/test_input.txt";
+        }
         try {
-            File myObj = new File("./resources/input.txt");
+            File myObj = new File(pathname);
             myReader = new Scanner(myObj);
         } catch (FileNotFoundException e) {
             System.out.println("File not found.");
