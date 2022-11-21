@@ -18,7 +18,7 @@ class NaughtyOrNiceString:
         self.hasNoSpecial = self.count_special_pairs()==0
         self.hasSeparatedDoubles = self.count_separated_doubles() > 0
         self.hasDoubleDoubles = self.count_double_doubles() > 0
-        self.isNice = self.has3Vowels & self.has1double & self.hasNoSpecial
+        self.isNice = self.has3Vowels and self.has1double and self.hasNoSpecial
         self.isNicer = self.hasSeparatedDoubles & self.hasDoubleDoubles
 
     def count_vowels(self):
@@ -69,14 +69,12 @@ if __name__ == '__main__':
 
     niceCount = 0
     nicerCount = 0
-    test = 'qjhvhtzxzqqjkmpb'
     for testString in raw_input.get_initial_state():
         testObject = NaughtyOrNiceString(testString)
         if testObject.isNice:
             niceCount += 1
         if testObject.isNicer:
             nicerCount += 1
-        # print(f'{testString} is {"nicer" if testObject.isNicer else "naughty"}')
 
     print(f'We counted {niceCount} nice strings')
     print(f'We counted {nicerCount} nicer strings')
@@ -84,10 +82,3 @@ if __name__ == '__main__':
     end = time.perf_counter_ns()
     print(f'The time to solve was {(end - start) / 1_000} us')
     print(f'The time to solve was {(end - start) / 1_000_000} ms')
-
-    # test_input = raw_input.get_initial_state()
-    # total = 0
-    # for input in test_input:
-    #     present = Present(input)
-    #     total += present.ribbon
-    # print(total)
