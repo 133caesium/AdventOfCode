@@ -7,17 +7,18 @@ raw_input = LineParser(False)
 class LightGrid:
 
     def __init__(self):
-        self.grid = np.zeros((1000, 1000), dtype=bool)
+        self.grid = np.zeros((1000, 1000))
 
     def perform_instruction(self, instruction):
         for y in range(instruction.start_y, instruction.end_y+1):
             for x in range(instruction.start_x, instruction.end_x+1):
                 if instruction.instruction_type == "on":
-                    self.grid[y, x] = True
+                    self.grid[y, x] += 1
                 elif instruction.instruction_type == "off":
-                    self.grid[y, x] = False
+                    if self.grid[y, x]>0:
+                        self.grid[y, x] -= 1
                 elif instruction.instruction_type == "toggle":
-                    self.grid[y,x] = not self.grid[y,x]
+                    self.grid[y,x] += 2
                 else:
                     raise Exception(f'Tried to perform invalid instruction "'
                                     f'{instruction.instruction_type}"'
