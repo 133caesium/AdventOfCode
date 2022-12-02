@@ -6,10 +6,10 @@ class RockPaperScissorsRound {
    
     constructor(rounds: string[]) {
       this.rounds = rounds;
-      this.finalScore = this.rounds.reduce((sum, current) => sum + this.evaluateRound(current), 0);
+      this.finalScore = this.rounds.reduce((sum, current) => sum + this.evaluateRoundPart2(current), 0);
     }
 
-    evaluateRound(round: string): number {
+    evaluateRoundPart1(round: string): number {
         let roundValue = 0;
         switch(round){
             // Ties
@@ -41,6 +41,43 @@ class RockPaperScissorsRound {
                 break;
             case 'A Z':
                 roundValue = 3;
+                break;
+        }
+        return roundValue;
+    }
+
+    evaluateRoundPart2(round: string): number {
+        let roundValue = 0;
+        switch(round){
+            // Ties
+            case 'A Y':
+                roundValue = 4;
+                break;
+            case 'B Y':
+                roundValue = 5;
+                break;
+            case 'C Y':
+                roundValue = 6;
+                break;
+            // Wins
+            case 'A Z':
+                roundValue = 8;
+                break;
+            case 'B Z':
+                roundValue = 9;
+                break;
+            case 'C Z':
+                roundValue = 7;
+                break;
+            // Losses
+            case 'A X':
+                roundValue = 3;
+                break;
+            case 'B X':
+                roundValue = 1;
+                break;
+            case 'C X':
+                roundValue = 2;
                 break;
         }
         return roundValue;
