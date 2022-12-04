@@ -53,14 +53,14 @@ function solvePart1(data: string[]): number {
   for (const elfRangeRaw of data) {
     const elfRange = new ElfPair(elfRangeRaw);
     if (elfRange.anElfIsContained) {
-      containmentCount++
+      containmentCount++;
     }
     if (elfRange.checkOverlap()) {
-      overlapCount++
+      overlapCount++;
     }
   }
-  console.log(`There were ${containmentCount} pairs that had containment`)
-  console.log(`There were ${overlapCount} pairs that had overlap`)
+  console.log(`There were ${containmentCount} pairs that had containment`);
+  console.log(`There were ${overlapCount} pairs that had overlap`);
   return containmentCount;
 }
 
