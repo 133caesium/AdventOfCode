@@ -22,6 +22,13 @@ class ElfPair {
     );
   }
 
+  checkOverlap(): boolean {
+    return (
+      (this.elf1start <= this.elf2start && this.elf1end >= this.elf2start) ||
+      (this.elf2start <= this.elf1start && this.elf2end >= this.elf1start)
+    );
+  }
+
   toString(): string {
     return (
       `A pair of elves who are cleaning:\n` +
@@ -35,20 +42,25 @@ class ElfPair {
 }
 
 function importData(): string[] {
-  const rawFile = readFileSync('./Day04/sample_input.txt', 'utf-8');
+  const rawFile = readFileSync('./Day04/input.txt', 'utf-8');
   const fileAsStringArray = rawFile.split('\r\n');
   return fileAsStringArray;
 }
 
 function solvePart1(data: string[]): number {
   let containmentCount = 0;
+  let overlapCount = 0;
   for (const elfRangeRaw of data) {
     const elfRange = new ElfPair(elfRangeRaw);
     if (elfRange.anElfIsContained) {
       containmentCount++
     }
+    if (elfRange.checkOverlap()) {
+      overlapCount++
+    }
   }
   console.log(`There were ${containmentCount} pairs that had containment`)
+  console.log(`There were ${overlapCount} pairs that had overlap`)
   return containmentCount;
 }
 
@@ -57,5 +69,6 @@ function solvePart2(data: string[]): number {
 }
 
 const data = importData();
+// const elfArray: ElfPair[] = []
 solvePart1(data);
 solvePart2(data);
