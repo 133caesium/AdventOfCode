@@ -2,7 +2,7 @@ import { readFileSync } from 'fs';
 
 class GenericClass {
     stringThing: string;
-    numberThing: Number;
+    numberThing: number;
    
     constructor(data: string) {
     }

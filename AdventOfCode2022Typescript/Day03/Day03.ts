@@ -19,7 +19,7 @@ class ElfBackpack {
     }
 
     findDuplicates() {
-        for (var i = 0; i < this.compartment1.length; i++) {
+        for (let i = 0; i < this.compartment1.length; i++) {
             if (this.compartment2.includes(this.compartment1.charAt(i))) {
                 this.duplicateCharacters.push(this.compartment1.charAt(i))
             }
@@ -58,7 +58,7 @@ class ElfBackpack {
     }
 
     findDuplicates() {
-        for (var i = 0; i < this.backpack1.length; i++) {
+        for (let i = 0; i < this.backpack1.length; i++) {
             if (this.backpack2.includes(this.backpack1.charAt(i))) {
                 if (this.backpack3.includes(this.backpack1.charAt(i))) {
                     this.duplicateCharacters.push(this.backpack1.charAt(i))
@@ -89,7 +89,7 @@ function importData(): string[] {
 
 function solvePart1(data: string[]): number {
     let backpackDuplicatesum = 0;
-    for (let individualBackpackRaw of data) {
+    for (const individualBackpackRaw of data) {
         const backpack = new ElfBackpack(individualBackpackRaw)
         // console.log(backpack.toString())
         backpackDuplicatesum = backpackDuplicatesum + backpack.duplicateCharValue
@@ -100,7 +100,7 @@ function solvePart1(data: string[]): number {
 
 function solvePart2(data: string[]): number {
     let badgeSum = 0;
-    for (var i = 0; i < data.length; i=i+3) {
+    for (let i = 0; i < data.length; i=i+3) {
         const badgeGroup = new ElfBadgeGroup(data[i], data[i+1], data[i+2])
         // console.log(badgeGroup.toString())
         badgeSum = badgeSum + badgeGroup.duplicateCharValue

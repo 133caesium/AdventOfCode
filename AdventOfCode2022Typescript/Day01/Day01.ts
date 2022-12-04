@@ -21,9 +21,9 @@ function importData(): number[] {
 }
 
 function generateElvesFromNumericData(data: number[]): ElfInventory[] {
-    let elves: ElfInventory[] = [];
+    const elves: ElfInventory[] = [];
     let bag: number[] = [];
-    for (let item of data) {
+    for (const item of data) {
         if (Number.isNaN(item)) {
             elves.push(new ElfInventory(bag))
             bag = [];
@@ -34,7 +34,7 @@ function generateElvesFromNumericData(data: number[]): ElfInventory[] {
     if (bag.length > 0) {
         elves.push(new ElfInventory(bag))
     }
-    let sortedElves: ElfInventory[] = elves.sort((n1,n2) => n2.totalCalories - n1.totalCalories);
+    const sortedElves: ElfInventory[] = elves.sort((n1,n2) => n2.totalCalories - n1.totalCalories);
     return sortedElves
 }
 
