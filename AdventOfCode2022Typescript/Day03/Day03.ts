@@ -18,7 +18,7 @@ class ElfBackpack {
         this.duplicateCharacters[0].charCodeAt(0) -64-32;
     }
 
-    findDuplicates() {
+    findDuplicates(): void {
         for (let i = 0; i < this.compartment1.length; i++) {
             if (this.compartment2.includes(this.compartment1.charAt(i))) {
                 this.duplicateCharacters.push(this.compartment1.charAt(i))
@@ -26,14 +26,14 @@ class ElfBackpack {
         }
     }
    
-    toString() {
+    toString(): string {
       return (
         `A backpack containing ${this.backpack} \n`+
         `Made up of two compatments:\n`+
         `${this.compartment1}\n`+
         `${this.compartment2}\n` +
         `Duplicate characters \n` +
-        `${this.duplicateCharacters} \n`)+
+        `${this.duplicateCharacters.toString()} \n`)+
         `By default this has the value ${
            this.duplicateCharValue}`
     }
@@ -57,7 +57,7 @@ class ElfBackpack {
         this.duplicateCharacters[0].charCodeAt(0) -64-32;
     }
 
-    findDuplicates() {
+    findDuplicates(): void {
         for (let i = 0; i < this.backpack1.length; i++) {
             if (this.backpack2.includes(this.backpack1.charAt(i))) {
                 if (this.backpack3.includes(this.backpack1.charAt(i))) {
@@ -67,14 +67,14 @@ class ElfBackpack {
         }
     }
    
-    toString() {
+    toString():string {
       return (
         `A trio of elf backpacks containing:\n`+
         `${this.backpack1}\n`+
         `${this.backpack2}\n`+
         `${this.backpack3}\n` +
         `Duplicate characters \n` +
-        `${this.duplicateCharacters} \n`)+
+        `${this.duplicateCharacters.toString()} \n`)+
         `By default this has the value ${
            this.duplicateCharValue}`
     }

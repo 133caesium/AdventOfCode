@@ -83,7 +83,7 @@ class RockPaperScissorsRound {
         return roundValue;
     }
    
-    toString() {
+    toString(): string {
       return (`This set of scores has final score ${RPS.finalScore}`);
     }
   }

@@ -9,8 +9,8 @@ class ElfInventory {
       this.totalCalories = foodItems.reduce((sum, current) => sum + current, 0);
     }
    
-    toString() {
-      return `This elf has ${this.totalCalories} total calories from the items: ${this.individualCalories}`;
+    toString(): string {
+      return `This elf has ${this.totalCalories} total calories from the items: ${this.individualCalories.toString()}`;
     }
   }
 

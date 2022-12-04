@@ -5,9 +5,10 @@ class GenericClass {
     numberThing: number;
    
     constructor(data: string) {
+      this.stringThing = data;
     }
    
-    toString() {
+    toString(): string {
       return (
         `A string version of the object`
       )

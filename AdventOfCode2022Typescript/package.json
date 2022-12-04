@@ -14,7 +14,7 @@
     "prettier": "^2.8.0"
   },
   "scripts": {
-    "lint": "eslint --ext .js,.ts,.jsx,.tsx .",
-    "format": "yarn run lint --fix & yarn prettier --write './**/*.{js,jsx,ts,tsx}'"
+    "lint": "eslint --ext .ts,.tsx .",
+    "format": "yarn run lint --fix & yarn prettier --write './**/*.{ts,tsx}'"
   }
 }
