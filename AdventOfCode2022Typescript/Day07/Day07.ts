@@ -110,7 +110,8 @@ function generateRoot(data: string[]): Folder {
           }
         });
       } else {
-        folderCursor = folderPath.pop();
+        const newCursor = folderPath.pop()
+        folderCursor = newCursor!==undefined ? newCursor : root;
         // console.log(`Navigated up to ${folderCursor.name}`)
       }
     } else {
