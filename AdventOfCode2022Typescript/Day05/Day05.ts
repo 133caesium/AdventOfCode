@@ -5,7 +5,6 @@ class CrateStacks {
   numberOfStacks: number;
   tallestStack: number;
   stacks: string[][] = [];
-
   moves: string[] = [];
 
   constructor(data: string[]) {
@@ -62,44 +61,56 @@ class CrateStacks {
     for (const line of this.stackData) {
       console.log(`${line.length}:${line}`);
     }
-    // for (const line of this.stackData) {
-    // console.log(`Extract ${line[1]},${line[5]},${line[9]}`)
-    // }
     console.log(this.stacks);
   }
 }
 
+function printStack(carateStack: CrateStacks): void {
+  for (const stack of carateStack.stacks) {
+    const outputCharacter = stack.pop();
+    process.stdout.write(
+      outputCharacter !== undefined ? outputCharacter : '[ERROR}'
+    );
+  }
+  console.log('');
+}
+
 function importData(): string[] {
-  const rawFile = readFileSync('./Day05/sample_input.txt', 'utf-8');
+  const rawFile = readFileSync('./Day05/input.txt', 'utf-8');
   const fileAsStringArray = rawFile.split('\r\n');
   return fileAsStringArray;
 }
 
-function solvePart1(data: string[]): number {
-  return 0;
+function solvePart1(data: string[]): void {
+  const stacks = new CrateStacks(data);
+  for (const line of data) {
+    if (line.startsWith('move')) {
+      const moveArray = line.split(' ');
+      stacks.move(
+        parseInt(moveArray[1]),
+        parseInt(moveArray[3]) - 1,
+        parseInt(moveArray[5]) - 1
+      );
+    }
+  }
+  printStack(stacks);
 }
 
-function solvePart2(data: string[]): number {
-  return 0;
+function solvePart2(data: string[]): void {
+  const stacks = new CrateStacks(data);
+  for (const line of data) {
+    if (line.startsWith('move')) {
+      const moveArray = line.split(' ');
+      stacks.move2(
+        parseInt(moveArray[1]),
+        parseInt(moveArray[3]) - 1,
+        parseInt(moveArray[5]) - 1
+      );
+    }
+  }
+  printStack(stacks);
 }
 
 const data = importData();
-const stacks = new CrateStacks(data);
-stacks.display();
-for (const line of data) {
-  if (line.startsWith('move')) {
-    const moveArray = line.split(' ');
-    stacks.move2(
-      parseInt(moveArray[1]),
-      parseInt(moveArray[3]) - 1,
-      parseInt(moveArray[5]) - 1
-    );
-  }
-}
-stacks.display();
-for (const stack of stacks.stacks) {
-  process.stdout.write(stack.pop());
-}
-
 solvePart1(data);
 solvePart2(data);
