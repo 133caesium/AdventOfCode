@@ -5,6 +5,7 @@ class Tree {
   xCoord: number;
   yCoord: number;
   treeVisible: boolean;
+  treeSenicScore: number;
 
   constructor(height: number, x: number, y: number) {
     this.treeHeight = height;
@@ -23,17 +24,9 @@ class Tree {
 }
 
 function importData(): string[] {
-  const rawFile = readFileSync('./Day08/sample_input.txt', 'utf-8');
+  const rawFile = readFileSync('./Day08/input.txt', 'utf-8');
   const fileAsStringArray = rawFile.split('\r\n');
   return fileAsStringArray;
-}
-
-function solvePart1(data: string[]): number {
-  return 0;
-}
-
-function solvePart2(data: string[]): number {
-  return 0;
 }
 
 // Select the current tree
@@ -114,9 +107,81 @@ function countVisibleTrees(trees: Tree[][]): number {
   return visibleTreeCount;
 }
 
+function calculateSenicScore(
+  trees: Tree[][],
+  targetX: number,
+  targetY: number
+): number {
+  const tree = trees[targetY][targetX];
+  let viewUp = 0;
+  let viewDown = 0;
+  let viewLeft = 0;
+  let viewRight = 0;
+  for (let checkYIndex = targetY - 1; checkYIndex >= 0; checkYIndex--) {
+    viewUp++;
+    if (trees[checkYIndex][targetX] >= tree) {
+      break;
+    }
+  }
+  for (
+    let checkYIndex = targetY + 1;
+    checkYIndex < trees.length;
+    checkYIndex++
+  ) {
+    viewDown++;
+    if (trees[checkYIndex][targetX] >= tree) {
+      break;
+    }
+  }
+  for (let checkXIndex = targetX - 1; checkXIndex >= 0; checkXIndex--) {
+    viewLeft++;
+    if (trees[targetY][checkXIndex] >= tree) {
+      break;
+    }
+  }
+  for (
+    let checkXIndex = targetX + 1;
+    checkXIndex < trees[0].length;
+    checkXIndex++
+  ) {
+    viewRight++;
+    if (trees[targetY][checkXIndex] >= tree) {
+      break;
+    }
+  }
+  tree.treeSenicScore = viewUp * viewDown * viewLeft * viewRight;
+  return tree.treeSenicScore;
+}
+
+function solvePart1(trees: Tree[][]): number {
+  checkVisibility(trees);
+  const visibleTrees: number = countVisibleTrees(trees);
+  console.log(`Part 1: The number of visible trees is ${visibleTrees}`);
+  return 0;
+}
+
+function solvePart2(trees: Tree[][]): number {
+  let maxSenicScore = 0;
+  trees.forEach((treeRow) => {
+    treeRow.forEach((tree) => {
+      const testScore: number = calculateSenicScore(
+        trees,
+        tree.xCoord,
+        tree.yCoord
+      );
+      if (testScore > maxSenicScore) {
+        maxSenicScore = testScore;
+        console.log(
+          `Part 2: A new max Senic Score of ${maxSenicScore} at tree ${tree.xCoord},${tree.yCoord}`
+        );
+      }
+    });
+  });
+  return maxSenicScore;
+}
+
 const data = importData();
 const trees = createTrees(data);
-checkVisibility(trees);
-console.log(`The number of visible trees is ${countVisibleTrees(trees)}`);
-solvePart1(data);
-solvePart2(data);
+
+solvePart1(trees);
+solvePart2(trees);
