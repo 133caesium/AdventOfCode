@@ -72,6 +72,21 @@ class Monkey {
     this.inspectionCount = 0;
   }
 
+  reduceWorryPart1(worryLevel): number {
+      worryLevel = Math.floor(worryLevel / 3);
+    return worryLevel
+  }
+
+  reduceWorryPart2(worryLevel: number): number {
+    const sampleReducer =   96577
+    const realReducer = 9699690
+    const reducer = realReducer
+    while (worryLevel>reducer){
+          worryLevel -=reducer;
+      }
+      return worryLevel
+  }
+
   inspectItem(item: number): number {
     // console.log(`About to inspect ${item}`)
     let worryLevel: number = item;
@@ -88,7 +103,7 @@ class Monkey {
     } else {
       console.log(`ERROR: invalid operation, original value returned`);
     }
-    worryLevel = Math.floor(worryLevel / 3);
+    worryLevel = this.reduceWorryPart2(worryLevel)
     // console.log(`After divigind by 3 we have worry level ${worryLevel}`)
     // console.log(`after inspection we have inspect ${worryLevel}`)
     this.inspectionCount++;
@@ -108,9 +123,9 @@ class Monkey {
       ? (targetMonkey = this.testTrueMonkey)
       : (targetMonkey = this.testFalseMonkey);
     const targetItemCount = monkeyFamily[targetMonkey].items.unshift(item);
-    console.log(
-      `Threw item [${item}] from Monkey:${this.monkeyNumber} to Monkey:${targetMonkey} who now has ${targetItemCount} items`
-    );
+    // console.log(
+    //   `Threw item [${item}] from Monkey:${this.monkeyNumber} to Monkey:${targetMonkey} who now has ${targetItemCount} items`
+    // );
     return this.items.length;
   }
 }
@@ -183,7 +198,7 @@ function createInputMonkeys(): Monkey[] {
 }
 function solvePart1(): number {
   const monkeyFamily: Monkey[] = createInputMonkeys();
-  let monkeyInspectionCounts: number[] = [];
+  const monkeyInspectionCounts: number[] = [];
   monkeyFamily.forEach((monkey) => {
     console.log(`Monkey ${monkey.monkeyNumber} has ${monkey.items}`);
   });
@@ -205,13 +220,34 @@ function solvePart1(): number {
   return result;
 }
 
-function solvePart2(monkeyFamily: Monkey[]): number {
-  return 0;
+function solvePart2(): number {
+    const monkeyFamily: Monkey[] = createInputMonkeys();
+    // const monkeyFamily: Monkey[] = createSampleInputMonkeys();
+    const monkeyInspectionCounts: number[] = [];
+    monkeyFamily.forEach((monkey) => {
+      console.log(`Monkey ${monkey.monkeyNumber} has ${monkey.items}`);
+    });
+    for (let index = 0; index < 10000; index++) {
+      round(monkeyFamily);
+    }
+    monkeyFamily.forEach((monkey) => {
+      console.log(
+        `Monkey ${monkey.monkeyNumber} inspected ${
+          monkey.inspectionCount
+        } items and has ${monkey.items.reverse()}`
+      );
+      monkeyInspectionCounts.push(monkey.inspectionCount);
+    });
+    monkeyInspectionCounts.sort((a, b) => b - a);
+    const result = monkeyInspectionCounts[0] * monkeyInspectionCounts[1];
+    console.log(monkeyInspectionCounts);
+    console.log(`Part 2 answer: ${result}`);
+    return result;
 }
 
 // const data = importData();
 // const monkeys = monkeyParser(data)
 // console.log(monkeys)
 // const instructions = new InstructionReader(data);
-solvePart1();
-// solvePart2(instructions);
+// solvePart1();
+solvePart2();
